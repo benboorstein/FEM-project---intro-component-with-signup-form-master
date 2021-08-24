@@ -99,23 +99,35 @@ main
     margin-bottom: 20px;
 }
 
+
+
+
+
+
 /*******************************************************************************************************/
 /*******************************************************************************************************/
 /*******************************************************************************************************/
 
+/******************* LEFT OFF HERE:
+- Make ALL paragraphs work too.
+- Do red email text in the email window.
+- Adapt all for wide viewport, including no scroll at any time (not sure yet why this is happening)
+********************/
 
-/******************* LEFT OFF HERE ********************/
-
-.form-input:invalid {
+.submitted .form-input:invalid { /* note the "submitted" class is added to 'form' in app.js and is not in index.html */
     border: 2px solid #f1828d;
     background:
         url("../../assets/img/icon-error.svg")
             no-repeat
             scroll
-            325px center / 27px 27px; /* x-axis y-axis / width height */               
+            325px center / 27px 27px;   
 }
 
-input + p {
+.is-hidden {
+    display: none;
+}
+
+.p {
     font-size: 11px;
     font-style: italic;
     color: #f1828d;
