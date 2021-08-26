@@ -110,6 +110,7 @@ main
 
 /******************* LEFT OFF HERE:
 - Make ALL paragraphs work too.
+- And get rid of default alert that pops up when you try to click green on an empty field.
 - Do red email text in the email window.
 - Adapt all for wide viewport, including no scroll at any time (not sure yet why this is happening)
 ********************/
@@ -127,7 +128,7 @@ main
     display: none;
 }
 
-.p {
+.error-p {
     font-size: 11px;
     font-style: italic;
     color: #f1828d;
