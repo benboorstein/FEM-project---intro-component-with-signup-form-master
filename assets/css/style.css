@@ -100,22 +100,11 @@ main
 }
 
 
-
-
-
-
 /*******************************************************************************************************/
-/*******************************************************************************************************/
-/*******************************************************************************************************/
+/* Note: The section inside these markings was new to me in late August 2021, mainly the use of the '.submitted' class. Really cool! */
+/* Remember that the 'classList.add('submitted')' in the JS basically creates a de facto 'if' statement: If the '.submitted' class is on <form>, then '.form-input:invalid' (a grandchild of <form>), for instance, will be active, so to speak. */
 
-/******************* LEFT OFF HERE:
-- Make ALL paragraphs work too.
-- And get rid of default alert that pops up when you try to click green on an empty field.
-- Do red email text in the email window.
-- Adapt all for wide viewport, including no scroll at any time (not sure yet why this is happening)
-********************/
-
-.submitted .form-input:invalid { /* note the "submitted" class is added to 'form' in app.js and is not in index.html */
+.submitted .form-input:invalid { /* note the 'submitted' class is added to 'form' in app.js and is not in index.html */
     border: 2px solid #f1828d;
     background:
         url("../../assets/img/icon-error.svg")
@@ -124,32 +113,24 @@ main
             325px center / 27px 27px;   
 }
 
-.is-hidden {
-    display: none;
-}
-
-.error-p {
+.form-input + p { /* The '+' character combines two CSS selectors. It selects the second element only if this second element comes immediately after the first element and both elements are children of the same parent. */
     font-size: 11px;
     font-style: italic;
     color: #f1828d;
     text-align: right;
     margin: -17px 2px 16px 0;
+    display: none; /* to hide the paragraph on load */
 }
 
+.submitted .form-input:invalid + p {
+    display: block;
+}
+
+.submitted .form-input:valid + p { /* 'valid' is the default state of the input, so ':valid' is not needed, but including for clarity */
+    display: none;
+}
 
 /*******************************************************************************************************/
-/*******************************************************************************************************/
-/*******************************************************************************************************/
-
-
-
-
-
-
-
-
-
-
 
 
 .free-trial-btn {
@@ -224,7 +205,7 @@ footer
         padding: 62px 125px 43px 125px;
         display: flex;
         justify-content: space-between;
-        gap: 150px; /* 'gap' is not part of Flexbox. It puts space between elements. */
+        gap: 150px;
     }
 
     .header-main-container > * { /* i.e., all elements that are children of .header-main-container */
@@ -271,6 +252,14 @@ footer
         padding: 15px 0 15px 22px;
     }
 
+    .submitted .form-input:invalid {
+        background:
+            url("../../assets/img/icon-error.svg")
+                no-repeat
+                scroll
+                365px center / 27px 27px;
+    }
+
     .free-trial-btn {
         font-size: 15px;
         padding: 15px 0;
@@ -289,7 +278,7 @@ footer
 
     .terms-of-click {
         font-size: 11px;
-        padding: 15px 25px 0 25px;
+        padding: 12px 25px 0 25px;
     }
 
     /****************************************
@@ -309,28 +298,36 @@ footer
   
   
   
-  
-  
-  
+
+
+
+
+
 /* KEEP THIS AS A REFERENCE:
-parent {
+
+parent/container/row {
     display: flex;    mandatory 
     flex-direction: ;    row (default) | row-reverse | column | column-reverse 
     justify-content: ;    flex-start (default) | flex-end | center | space-between | space-around | space-evenly 
     align-items: ;    flex-start | flex-end | center | (baseline) | stretch (default) 
     flex-wrap: ;    nowrap (default) | wrap | wrap-reverse 
-    align-content: ;    flex-start | flex-end | center | space-between | space-around | stretch (default) 
+    align-content: ;    flex-start | flex-end | center | space-between | space-around | stretch (default)
+
+    note on 'align-content' (paraphrased from flexboxfroggy.com): 'align-content' determines the spacing between lines, while 'align-items' determines how the items as a whole are aligned within the container; when there is only one line, 'align-content' has no effect
+
+    flex-flow: ;    this is shorthand for 'flex-direction: ;' and 'flex-wrap: ;' (e.g., 'flex-flow: column wrap;')
 }
   
-child {
+child/item/cell {
     align-self: ;    flex-start | flex-end | center | (baseline) | stretch (default)
-    flex-grow: ;    0 is default 
-    flex-shrink: ;    1 is default 
-    flex-basis: ;    auto is default 
+    flex-grow: ;    0 is default (Jen Kramer: This is very hard to understand)
+    flex-shrink: ;    1 is default (Jen Kramer: This is very hard to understand)
+    flex-basis: ;    auto is default (Jen Kramer: This is basically the 'width' property--never use with Flexbox--but with some flexibility you can't control)
     order: ;    0 is default
   
-    flex: [flex-grow number, flex-shrink number, flex-basis number];    this is a way (instead of using % outside of Flexbox) to set relative sizes of elements. (This is how I THOUGHT 'flex-grow' worked.) An example is 'flex: 1 1 0;' (the shorthand for which is the oft used 'flex: 1;').
+    flex: [flex-grow number, flex-shrink number, flex-basis number];    this is a way (instead of using % outside of Flexbox) to set relative sizes of elements. (This is how I THOUGHT 'flex-grow' worked.) An example is 'flex: 1 1 0;' (the shorthand for which is the oft-used 'flex: 1;').
     
     margin-top: auto;    this puts the element at the bottom.
 }
+
 */
